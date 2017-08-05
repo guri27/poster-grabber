@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="vBoxMain" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.poster.grabber.ui.MainController">
+	<children>
+		<GridPane prefHeight="149.0" prefWidth="317.0" VBox.vgrow="ALWAYS">
+			<columnConstraints>
+				<ColumnConstraints hgrow="ALWAYS" maxWidth="204.0" minWidth="10.0" prefWidth="201.0" />
+				<ColumnConstraints hgrow="ALWAYS" maxWidth="132.0" minWidth="10.0" prefWidth="73.0" />
+			</columnConstraints>
+			<rowConstraints>
+				<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+				<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+			</rowConstraints>
+			<children>
+				<Button mnemonicParsing="false" onAction="#selectDirAction" onDragDetected="#selectDirAction" text="Select Directory" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+					<GridPane.margin>
+						<Insets />
+					</GridPane.margin>
+				</Button>
+				<Button mnemonicParsing="false" onAction="#updateAction" text="Update" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+				<Button mnemonicParsing="false" onAction="#deleteAction" text="Delete" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+				<Text fx:id="selectedDirectory" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Directory" GridPane.halignment="CENTER">
+					<GridPane.margin>
+						<Insets />
+					</GridPane.margin>
+				</Text>
+			</children>
+		</GridPane>
+		<Accordion>
+			<panes>
+				<TitledPane animated="false" text="View Output">
+               <content>
+                  <TextArea fx:id="consoleId" prefHeight="200.0" prefWidth="200.0" />
+               </content>
+				</TitledPane>
+			</panes>
+		</Accordion>
+	</children>
+</VBox>
