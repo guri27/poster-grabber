@@ -119,13 +119,18 @@ public class PostGrabber {
 		String name = filterName(searchName);
 		System.out.println("Getting details for: " + name);
 		MovieModel res = null;
-		RestTemplate getRequest = new RestTemplate();
-		ResponseEntity<Result> response = getRequest.getForEntity(SEARCH_URL + name, Result.class);
-		if (response.getStatusCode() == HttpStatus.OK) {
-			Result result = response.getBody();
-			if (result != null && !result.getResults().isEmpty()) {
-				res = result.getResults().get(0);
+		try {
+			RestTemplate getRequest = new RestTemplate();
+			ResponseEntity<Result> response = getRequest.getForEntity(SEARCH_URL + name, Result.class);
+			if (response.getStatusCode() == HttpStatus.OK) {
+				Result result = response.getBody();
+				if (result != null && !result.getResults().isEmpty()) {
+					res = result.getResults().get(0);
+				}
 			}
+		} catch (Exception e) {
+			System.out.println("Exception while doing operation");
+			e.printStackTrace();
 		}
 		return res;
 	}
@@ -159,6 +164,9 @@ public class PostGrabber {
 		Path destPath = null;
 		try {
 			System.out.println("Renaming directory: " + movie.getOriginal_title());
+			// Update dir name, if contains /,?,:
+			String updateMovieName = movie.getOriginal_title().replaceAll(":", "");
+			movie.setOriginal_title(updateMovieName);
 			Calendar cal = Calendar.getInstance();
 			cal.setTime(movie.getRelease_date());
 			String dest = this.directory + File.separator + movie.getOriginal_title() + " " + YEAR_PREFIX
@@ -267,7 +275,7 @@ public class PostGrabber {
 	}
 	
 	/*public static void main(String[] args) {
-		PostGrabber postGrabber = new PostGrabber("D:\\test");
+		PostGrabber postGrabber = new PostGrabber("G:\\Movies\\Angreji");
 		try {
 			postGrabber.update();
 		} catch (Exception e) {
