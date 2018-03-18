@@ -47,7 +47,7 @@ public class PostGrabber {
 	private static final String YEAR_POSTFIX = ")";
 	private static final String API_KEY = "682695192e252905a45c46ff9e0011a5";
 	private static final String SEARCH_URL = "https://api.themoviedb.org/3/search/movie?api_key=" + API_KEY + "&query=";
-	private static final String POSTER_URL = "http://image.tmdb.org/t/p/w600";
+	private static final String POSTER_URL = "http://image.tmdb.org/t/p/w500";
 	private static final String FILTER_NAME_REGEX = "[\\d\\'(']";
 
 	/**
